@@ -163,6 +163,8 @@ function initialData(): StationData {
   };
 }
 
+export type OverrideKey = "solar" | "wind" | "diesel" | "battery" | "fuelCell";
+
 interface Ctx {
   data: StationData;
   live: boolean;
@@ -172,8 +174,8 @@ interface Ctx {
   resetScenarios: () => void;
   objective: string;
   setObjective: (v: string) => void;
-  overrides: Record<string, boolean>;
-  setOverride: (k: string, v: boolean) => void;
+  overrides: Record<OverrideKey, boolean>;
+  setOverride: (k: OverrideKey, v: boolean) => void;
 }
 
 const PolarGridContext = createContext<Ctx | null>(null);
@@ -182,7 +184,7 @@ export function PolarGridProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<StationData>(() => initialData());
   const [live, setLive] = useState(false);
   const [objective, setObjective] = useState("Minimize fuel burn");
-  const [overrides, setOverrides] = useState<Record<string, boolean>>({
+  const [overrides, setOverrides] = useState<Record<OverrideKey, boolean>>({
     solar: true,
     wind: true,
     diesel: true,
@@ -203,7 +205,7 @@ export function PolarGridProvider({ children }: { children: ReactNode }) {
   const overridesRef = useRef(overrides);
   overridesRef.current = overrides;
 
-  const setOverride = useCallback((k: string, v: boolean) => {
+  const setOverride = useCallback((k: OverrideKey, v: boolean) => {
     setOverrides((prev) => ({ ...prev, [k]: v }));
   }, []);
 
