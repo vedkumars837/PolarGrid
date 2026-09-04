@@ -10,12 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommunicationsRouteImport } from './routes/communications'
 import { Route as DispatchRouteImport } from './routes/dispatch'
+import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as ForecastingRouteImport } from './routes/forecasting'
+import { Route as KpisRouteImport } from './routes/kpis'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SourcesRouteImport } from './routes/sources'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunicationsRoute = CommunicationsRouteImport.update({
+  id: '/communications',
+  path: '/communications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DispatchRoute = DispatchRouteImport.update({
@@ -23,40 +33,105 @@ const DispatchRoute = DispatchRouteImport.update({
   path: '/dispatch',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipmentRoute = EquipmentRouteImport.update({
+  id: '/equipment',
+  path: '/equipment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForecastingRoute = ForecastingRouteImport.update({
   id: '/forecasting',
   path: '/forecasting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KpisRoute = KpisRouteImport.update({
+  id: '/kpis',
+  path: '/kpis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SourcesRoute = SourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/communications': typeof CommunicationsRoute
   '/dispatch': typeof DispatchRoute
+  '/equipment': typeof EquipmentRoute
   '/forecasting': typeof ForecastingRoute
+  '/kpis': typeof KpisRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/communications': typeof CommunicationsRoute
   '/dispatch': typeof DispatchRoute
+  '/equipment': typeof EquipmentRoute
   '/forecasting': typeof ForecastingRoute
+  '/kpis': typeof KpisRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/communications': typeof CommunicationsRoute
   '/dispatch': typeof DispatchRoute
+  '/equipment': typeof EquipmentRoute
   '/forecasting': typeof ForecastingRoute
+  '/kpis': typeof KpisRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dispatch' | '/forecasting'
+  fullPaths:
+    | '/'
+    | '/communications'
+    | '/dispatch'
+    | '/equipment'
+    | '/forecasting'
+    | '/kpis'
+    | '/settings'
+    | '/sources'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dispatch' | '/forecasting'
-  id: '__root__' | '/' | '/dispatch' | '/forecasting'
+  to:
+    | '/'
+    | '/communications'
+    | '/dispatch'
+    | '/equipment'
+    | '/forecasting'
+    | '/kpis'
+    | '/settings'
+    | '/sources'
+  id:
+    | '__root__'
+    | '/'
+    | '/communications'
+    | '/dispatch'
+    | '/equipment'
+    | '/forecasting'
+    | '/kpis'
+    | '/settings'
+    | '/sources'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunicationsRoute: typeof CommunicationsRoute
   DispatchRoute: typeof DispatchRoute
+  EquipmentRoute: typeof EquipmentRoute
   ForecastingRoute: typeof ForecastingRoute
+  KpisRoute: typeof KpisRoute
+  SettingsRoute: typeof SettingsRoute
+  SourcesRoute: typeof SourcesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +143,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/communications': {
+      id: '/communications'
+      path: '/communications'
+      fullPath: '/communications'
+      preLoaderRoute: typeof CommunicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dispatch': {
       id: '/dispatch'
       path: '/dispatch'
       fullPath: '/dispatch'
       preLoaderRoute: typeof DispatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipment': {
+      id: '/equipment'
+      path: '/equipment'
+      fullPath: '/equipment'
+      preLoaderRoute: typeof EquipmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forecasting': {
@@ -82,13 +171,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kpis': {
+      id: '/kpis'
+      path: '/kpis'
+      fullPath: '/kpis'
+      preLoaderRoute: typeof KpisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sources': {
+      id: '/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunicationsRoute: CommunicationsRoute,
   DispatchRoute: DispatchRoute,
+  EquipmentRoute: EquipmentRoute,
   ForecastingRoute: ForecastingRoute,
+  KpisRoute: KpisRoute,
+  SettingsRoute: SettingsRoute,
+  SourcesRoute: SourcesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
