@@ -37,7 +37,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Snowflake className="size-5" />
           </span>
           <div>
-            <p className="leading-tight font-semibold tracking-tight">PolarGrid AI</p>
+            <p className="leading-tight font-semibold tracking-tight">PolarGrid </p>
             <p className="label-caps">Smart EMS</p>
           </div>
         </div>
