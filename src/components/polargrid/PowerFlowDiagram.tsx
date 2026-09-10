@@ -29,7 +29,7 @@ export function PowerFlowDiagram() {
       value: s.solar.output_kW,
       detail: `${s.solar.output_kW} kW · ${s.solar.status}`,
       color: "var(--solar)",
-      y: 52,
+      y: 24,
       direction: "in",
     },
     {
@@ -38,7 +38,7 @@ export function PowerFlowDiagram() {
       value: s.wind.output_kW,
       detail: `${s.wind.output_kW} kW · ${s.wind.status}`,
       color: "var(--wind)",
-      y: 137,
+      y: 118,
       direction: "in",
     },
     {
@@ -47,7 +47,7 @@ export function PowerFlowDiagram() {
       value: s.diesel.output_kW,
       detail: `${s.diesel.output_kW} kW · ${s.diesel.status}`,
       color: "var(--diesel)",
-      y: 222,
+      y: 200,
       direction: "in",
     },
     {
@@ -56,7 +56,7 @@ export function PowerFlowDiagram() {
       value: s.fuelCell.output_kW,
       detail: `${s.fuelCell.output_kW} kW · ${s.fuelCell.status}`,
       color: "var(--fuelcell)",
-      y: 307,
+      y: 282,
       direction: "in",
     },
     {
@@ -65,7 +65,7 @@ export function PowerFlowDiagram() {
       value: s.battery.chargeRate_kW,
       detail: `${s.battery.soc_pct}% · ${s.battery.status}`,
       color: "var(--battery)",
-      y: 372,
+      y: 350,
       direction: "bi",
       reverse: charging,
     },

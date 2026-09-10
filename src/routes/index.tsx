@@ -91,18 +91,20 @@ function Overview() {
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="panel p-4">
           <span className="label-caps">Generation mix — last 30 samples</span>
-          <ResponsiveContainer width="100%" height={220}>
+          <div className="mt-2 h-[220px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data.history} margin={{ top: 16, right: 8, left: -22, bottom: 0 }}>
               <XAxis dataKey="time" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} />
               <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
               <Tooltip
                 contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
               />
-              <Area type="monotone" dataKey="solar_kW" stackId="1" stroke="var(--solar)" fill="var(--solar)" fillOpacity={0.35} />
-              <Area type="monotone" dataKey="wind_kW" stackId="1" stroke="var(--wind)" fill="var(--wind)" fillOpacity={0.3} />
-              <Area type="monotone" dataKey="diesel_kW" stackId="1" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.35} />
+              <Area type="monotone" dataKey="solar_kW" stackId="1" stroke="var(--solar)" fill="var(--solar)" fillOpacity={0.35} isAnimationActive={false} />
+              <Area type="monotone" dataKey="wind_kW" stackId="1" stroke="var(--wind)" fill="var(--wind)" fillOpacity={0.3} isAnimationActive={false} />
+              <Area type="monotone" dataKey="diesel_kW" stackId="1" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.35} isAnimationActive={false} />
             </AreaChart>
           </ResponsiveContainer>
+          </div>
         </div>
         <div className="panel p-4">
           <span className="label-caps">Current AI decision</span>

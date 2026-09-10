@@ -60,8 +60,8 @@ function Forecasting() {
             <YAxis {...axis} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Line type="monotone" dataKey="tempC" name="Temp °C" stroke="var(--info)" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="windSpeed" name="Wind m/s" stroke="var(--wind)" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="tempC" name="Temp °C" stroke="var(--info)" dot={false} strokeWidth={2} isAnimationActive={false} />
+            <Line type="monotone" dataKey="windSpeed" name="Wind m/s" stroke="var(--wind)" dot={false} strokeWidth={2} isAnimationActive={false} />
           </LineChart>
         </Chart>
         <Chart title="Solar irradiance forecast">
@@ -70,7 +70,7 @@ function Forecasting() {
             <XAxis dataKey="time" {...axis} />
             <YAxis {...axis} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
-            <Line type="monotone" dataKey="irradiance" name="W/m²" stroke="var(--solar)" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="irradiance" name="W/m²" stroke="var(--solar)" dot={false} strokeWidth={2} isAnimationActive={false} />
           </LineChart>
         </Chart>
         <Chart title="Generation forecast vs. actual">
@@ -80,10 +80,10 @@ function Forecasting() {
             <YAxis {...axis} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Line type="monotone" dataKey="solar_kW" name="Solar fc" stroke="var(--solar)" dot={false} strokeDasharray="5 4" />
-            <Line type="monotone" dataKey="solarActual_kW" name="Solar act" stroke="var(--solar)" dot={false} strokeWidth={2} />
-            <Line type="monotone" dataKey="wind_kW" name="Wind fc" stroke="var(--wind)" dot={false} strokeDasharray="5 4" />
-            <Line type="monotone" dataKey="windActual_kW" name="Wind act" stroke="var(--wind)" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="solar_kW" name="Solar fc" stroke="var(--solar)" dot={false} strokeDasharray="5 4" isAnimationActive={false} />
+            <Line type="monotone" dataKey="solarActual_kW" name="Solar act" stroke="var(--solar)" dot={false} strokeWidth={2} isAnimationActive={false} />
+            <Line type="monotone" dataKey="wind_kW" name="Wind fc" stroke="var(--wind)" dot={false} strokeDasharray="5 4" isAnimationActive={false} />
+            <Line type="monotone" dataKey="windActual_kW" name="Wind act" stroke="var(--wind)" dot={false} strokeWidth={2} isAnimationActive={false} />
           </LineChart>
         </Chart>
         <Chart title="Load forecast vs. actual">
@@ -93,8 +93,8 @@ function Forecasting() {
             <YAxis {...axis} axisLine={false} domain={[14, 30]} />
             <Tooltip contentStyle={tooltipStyle} />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Line type="monotone" dataKey="load_kW" name="Forecast" stroke="var(--primary)" dot={false} strokeDasharray="5 4" />
-            <Line type="monotone" dataKey="loadActual_kW" name="Actual" stroke="var(--success)" dot={false} strokeWidth={2} />
+            <Line type="monotone" dataKey="load_kW" name="Forecast" stroke="var(--primary)" dot={false} strokeDasharray="5 4" isAnimationActive={false} />
+            <Line type="monotone" dataKey="loadActual_kW" name="Actual" stroke="var(--success)" dot={false} strokeWidth={2} isAnimationActive={false} />
           </LineChart>
         </Chart>
       </div>

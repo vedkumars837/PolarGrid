@@ -103,11 +103,11 @@ function Dispatch() {
               contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
             />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            <Area type="monotone" dataKey="solar_kW" name="Solar" stackId="1" stroke="var(--solar)" fill="var(--solar)" fillOpacity={0.4} />
-            <Area type="monotone" dataKey="wind_kW" name="Wind" stackId="1" stroke="var(--wind)" fill="var(--wind)" fillOpacity={0.35} />
-            <Area type="monotone" dataKey="battery_kW" name="Battery" stackId="1" stroke="var(--battery)" fill="var(--battery)" fillOpacity={0.35} />
-            <Area type="monotone" dataKey="fuelCell_kW" name="Fuel cell" stackId="1" stroke="var(--fuelcell)" fill="var(--fuelcell)" fillOpacity={0.35} />
-            <Area type="monotone" dataKey="diesel_kW" name="Diesel" stackId="1" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.4} />
+            <Area type="monotone" dataKey="solar_kW" name="Solar" stackId="1" stroke="var(--solar)" fill="var(--solar)" fillOpacity={0.4} isAnimationActive={false} />
+            <Area type="monotone" dataKey="wind_kW" name="Wind" stackId="1" stroke="var(--wind)" fill="var(--wind)" fillOpacity={0.35} isAnimationActive={false} />
+            <Area type="monotone" dataKey="battery_kW" name="Battery" stackId="1" stroke="var(--battery)" fill="var(--battery)" fillOpacity={0.35} isAnimationActive={false} />
+            <Area type="monotone" dataKey="fuelCell_kW" name="Fuel cell" stackId="1" stroke="var(--fuelcell)" fill="var(--fuelcell)" fillOpacity={0.35} isAnimationActive={false} />
+            <Area type="monotone" dataKey="diesel_kW" name="Diesel" stackId="1" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.4} isAnimationActive={false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>

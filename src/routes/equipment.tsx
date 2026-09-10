@@ -90,8 +90,8 @@ function Equipment() {
               <XAxis dataKey="time" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} />
               <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
               <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }} />
-              <Line type="monotone" dataKey="soc_pct" name="SOC %" stroke="var(--battery)" dot={false} strokeWidth={2} />
-              <Line type="monotone" dataKey="load_kW" name="Load kW" stroke="var(--info)" dot={false} strokeWidth={2} />
+              <Line type="monotone" dataKey="soc_pct" name="SOC %" stroke="var(--battery)" dot={false} strokeWidth={2} isAnimationActive={false} />
+              <Line type="monotone" dataKey="load_kW" name="Load kW" stroke="var(--info)" dot={false} strokeWidth={2} isAnimationActive={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
