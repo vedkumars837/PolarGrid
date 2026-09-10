@@ -29,7 +29,7 @@ export function PowerFlowDiagram() {
       value: s.solar.output_kW,
       detail: `${s.solar.output_kW} kW · ${s.solar.status}`,
       color: "var(--solar)",
-      y: 52,
+      y: 24,
       direction: "in",
     },
     {
@@ -38,7 +38,7 @@ export function PowerFlowDiagram() {
       value: s.wind.output_kW,
       detail: `${s.wind.output_kW} kW · ${s.wind.status}`,
       color: "var(--wind)",
-      y: 137,
+      y: 118,
       direction: "in",
     },
     {
@@ -47,7 +47,7 @@ export function PowerFlowDiagram() {
       value: s.diesel.output_kW,
       detail: `${s.diesel.output_kW} kW · ${s.diesel.status}`,
       color: "var(--diesel)",
-      y: 222,
+      y: 200,
       direction: "in",
     },
     {
@@ -56,7 +56,7 @@ export function PowerFlowDiagram() {
       value: s.fuelCell.output_kW,
       detail: `${s.fuelCell.output_kW} kW · ${s.fuelCell.status}`,
       color: "var(--fuelcell)",
-      y: 307,
+      y: 282,
       direction: "in",
     },
     {
@@ -65,7 +65,7 @@ export function PowerFlowDiagram() {
       value: s.battery.chargeRate_kW,
       detail: `${s.battery.soc_pct}% · ${s.battery.status}`,
       color: "var(--battery)",
-      y: 372,
+      y: 350,
       direction: "bi",
       reverse: charging,
     },
@@ -92,7 +92,7 @@ export function PowerFlowDiagram() {
 
         {nodes.map((n) => {
           const active = n.value > 0.25;
-          const path = `M ${SRC_X + 104} ${n.y + 30} C ${SRC_X + 220} ${n.y + 30}, ${BUS_X - 90} ${H / 2}, ${BUS_X - 22} ${H / 2}`;
+          const path = `M ${SRC_X + 132} ${n.y + 30} C ${SRC_X + 220} ${n.y + 30}, ${BUS_X - 90} ${H / 2}, ${BUS_X - 22} ${H / 2}`;
           return (
             <g key={n.key}>
               <path d={path} fill="none" stroke="var(--border)" strokeWidth={1.5} />
@@ -134,7 +134,7 @@ export function PowerFlowDiagram() {
             <rect
               x={SRC_X - 40}
               y={n.y}
-              width={144}
+              width={172}
               height={60}
               rx={12}
               fill="var(--card)"

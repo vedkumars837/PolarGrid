@@ -29,7 +29,7 @@ function Trend({ dataKey, color, rows }: { dataKey: string; color: string; rows:
         <XAxis dataKey="time" stroke="var(--muted-foreground)" fontSize={11} tickLine={false} />
         <YAxis stroke="var(--muted-foreground)" fontSize={11} tickLine={false} axisLine={false} />
         <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }} />
-        <Area type="monotone" dataKey={dataKey} stroke={color} fill={color} fillOpacity={0.25} strokeWidth={2} />
+        <Area type="monotone" dataKey={dataKey} stroke={color} fill={color} fillOpacity={0.25} strokeWidth={2} isAnimationActive={false} />
       </AreaChart>
     </ResponsiveContainer>
   );

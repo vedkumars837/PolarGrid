@@ -121,7 +121,7 @@ function Kpis() {
               <Tooltip
                 contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
               />
-              <Area type="monotone" dataKey="diesel_L" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.25} />
+              <Area type="monotone" dataKey="diesel_L" stroke="var(--diesel)" fill="var(--diesel)" fillOpacity={0.25} isAnimationActive={false} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -135,7 +135,7 @@ function Kpis() {
               <Tooltip
                 contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
               />
-              <Line type="monotone" dataKey="renewable_pct" stroke="var(--success)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="renewable_pct" stroke="var(--success)" strokeWidth={2} dot={false} isAnimationActive={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>

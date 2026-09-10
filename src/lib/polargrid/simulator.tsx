@@ -17,12 +17,21 @@ import type {
   TelemetrySample,
 } from "./types";
 
+// Deterministic noise so SSR and first client render match (no hydration mismatch).
+let detSeed = 0;
+const det = (spread: number) => {
+  detSeed += 1;
+  return Math.sin(detSeed * 12.9898) * spread;
+};
+
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 const rnd = (spread: number) => (Math.random() - 0.5) * 2 * spread;
 const round = (v: number, d = 1) => Number(v.toFixed(d));
 
+const BASE_TIME = Date.UTC(2026, 8, 3, 14, 30, 0);
+
 function hhmm(offsetHours: number) {
-  const d = new Date(Date.now() + offsetHours * 3600_000);
+  const d = new Date(BASE_TIME + offsetHours * 3600_000);
   return `${String(d.getUTCHours()).padStart(2, "0")}:00`;
 }
 
@@ -30,20 +39,20 @@ function buildForecast(): ForecastPoint[] {
   const pts: ForecastPoint[] = [];
   for (let i = -6; i < 24; i++) {
     const solar = clamp(6 * Math.sin(((i + 24) / 24) * Math.PI * 2 - 1.2) + 2.5, 0, 8.8);
-    const wind = clamp(20 + 10 * Math.sin(i / 3.5) + rnd(3), 0, 54);
-    const load = 21 + 3 * Math.sin(i / 4) + rnd(1);
+    const wind = clamp(20 + 10 * Math.sin(i / 3.5) + det(3), 0, 54);
+    const load = 21 + 3 * Math.sin(i / 4) + det(1);
     const past = i < 0;
     pts.push({
       time: hhmm(i),
-      tempC: round(-28 + 4 * Math.sin(i / 5) + rnd(1)),
+      tempC: round(-28 + 4 * Math.sin(i / 5) + det(1)),
       windSpeed: round(8 + wind / 6),
       irradiance: round(solar * 26, 0),
       solar_kW: round(solar),
       wind_kW: round(wind),
-      solarActual_kW: past ? round(clamp(solar + rnd(0.8), 0, 9)) : null,
-      windActual_kW: past ? round(clamp(wind + rnd(2.5), 0, 54)) : null,
+      solarActual_kW: past ? round(clamp(solar + det(0.8), 0, 9)) : null,
+      windActual_kW: past ? round(clamp(wind + det(2.5), 0, 54)) : null,
       load_kW: round(load),
-      loadActual_kW: past ? round(load + rnd(1.2)) : null,
+      loadActual_kW: past ? round(load + det(1.2)) : null,
     });
   }
   return pts;
@@ -53,7 +62,7 @@ function buildPlan(dieselHeavy: boolean): DispatchPoint[] {
   const pts: DispatchPoint[] = [];
   for (let i = 0; i < 24; i++) {
     const solar = dieselHeavy ? 0 : clamp(5.5 * Math.sin((i / 24) * Math.PI * 2 - 1.2) + 2, 0, 8.8);
-    const wind = dieselHeavy ? clamp(4 + rnd(3), 0, 10) : clamp(18 + 9 * Math.sin(i / 3.5), 2, 46);
+    const wind = dieselHeavy ? clamp(4 + det(3), 0, 10) : clamp(18 + 9 * Math.sin(i / 3.5), 2, 46);
     const load = 22 + 3 * Math.sin(i / 4);
     const renew = solar + wind;
     const deficit = load - renew;
@@ -76,23 +85,24 @@ function buildPlan(dieselHeavy: boolean): DispatchPoint[] {
 function buildHistory(): TelemetrySample[] {
   const out: TelemetrySample[] = [];
   for (let i = -30; i <= 0; i++) {
-    const solar = clamp(4 + rnd(2), 0, 8.8);
-    const wind = clamp(19 + rnd(6), 0, 54);
+    const solar = clamp(4 + det(2), 0, 8.8);
+    const wind = clamp(19 + det(6), 0, 54);
     out.push({
       time: hhmm(i / 6),
       solar_kW: round(solar),
       wind_kW: round(wind),
       diesel_kW: 0,
-      load_kW: round(22 + rnd(2)),
-      soc_pct: round(clamp(72 + rnd(6), 20, 100)),
-      renewable_pct: round(clamp(66 + rnd(8), 0, 100)),
+      load_kW: round(22 + det(2)),
+      soc_pct: round(clamp(72 + det(6), 20, 100)),
+      renewable_pct: round(clamp(66 + det(8), 0, 100)),
     });
   }
   return out;
 }
 
 function initialData(): StationData {
-  const now = new Date().toISOString();
+  detSeed = 0;
+  const now = new Date(BASE_TIME).toISOString();
   return {
     timestamp: now,
     station: {
