@@ -92,7 +92,7 @@ export function PowerFlowDiagram() {
 
         {nodes.map((n) => {
           const active = n.value > 0.25;
-          const path = `M ${SRC_X + 104} ${n.y + 30} C ${SRC_X + 220} ${n.y + 30}, ${BUS_X - 90} ${H / 2}, ${BUS_X - 22} ${H / 2}`;
+          const path = `M ${SRC_X + 132} ${n.y + 30} C ${SRC_X + 220} ${n.y + 30}, ${BUS_X - 90} ${H / 2}, ${BUS_X - 22} ${H / 2}`;
           return (
             <g key={n.key}>
               <path d={path} fill="none" stroke="var(--border)" strokeWidth={1.5} />
@@ -134,7 +134,7 @@ export function PowerFlowDiagram() {
             <rect
               x={SRC_X - 40}
               y={n.y}
-              width={144}
+              width={172}
               height={60}
               rx={12}
               fill="var(--card)"
